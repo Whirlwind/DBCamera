@@ -57,6 +57,10 @@
     return [[self alloc] initWithDelegate:nil cameraView:nil];
 }
 
+- (instancetype)init {
+    return [self initWithDelegate:nil cameraView:nil];
+}
+
 - (instancetype) initWithDelegate:(id<DBCameraViewControllerDelegate>)delegate cameraView:(id)camera
 {
     self = [super init];
@@ -327,7 +331,7 @@
         [segue setDelegate:self.delegate];
         [segue setCapturedImageMetadata:finalMetadata];
         [segue setCameraSegueConfigureBlock:self.cameraSegueConfigureBlock];
-
+        [segue.view setBackgroundColor:self.view.backgroundColor];
         [self.navigationController pushViewController:segue animated:YES];
     }
 }

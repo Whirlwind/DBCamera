@@ -43,7 +43,7 @@
     self = [super initWithFrame:frame];
 
     if ( self ) {
-        [self setBackgroundColor:[UIColor blackColor]];
+        [self setBackgroundColor:[UIColor clearColor]];
 
         _previewLayer = [[AVCaptureVideoPreviewLayer alloc] init];
         if ( captureSession ) {
@@ -101,7 +101,7 @@
     if ( !_topContainerBar ) {
         _topContainerBar = [[UIView alloc] initWithFrame:(CGRect){ 0, 0, CGRectGetWidth(self.bounds), CGRectGetMinY(previewFrame) }];
         [_topContainerBar setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-        [_topContainerBar setBackgroundColor:RGBColor(0x000000, 1)];
+        [_topContainerBar setBackgroundColor:[UIColor clearColor]];
     }
     return _topContainerBar;
 }
@@ -113,7 +113,7 @@
         _bottomContainerBar = [[UIView alloc] initWithFrame:(CGRect){ 0, newY, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) - newY }];
         [_bottomContainerBar setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin];
         [_bottomContainerBar setUserInteractionEnabled:YES];
-        [_bottomContainerBar setBackgroundColor:RGBColor(0x000000, 1)];
+        [_bottomContainerBar setBackgroundColor:[UIColor clearColor]];
     }
     return _bottomContainerBar;
 }

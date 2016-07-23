@@ -27,7 +27,7 @@
 
 #define buttonMargin 20.0f
 
-static const CGSize kFilterCellSize = { 75, 90 };
+static const CGSize kFilterCellSize = { 73, 73 };
 
 @interface DBCameraSegueViewController () <UIActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource> {
     DBCameraCropView *_cropView;
@@ -118,7 +118,7 @@ static const CGSize kFilterCellSize = { 75, 90 };
     [self.view setBackgroundColor:[UIColor blackColor]];
     
     CGFloat cropX = ( CGRectGetWidth( self.frameView.frame) - 320 ) * .5;
-    _pFrame = (CGRect){ cropX, ( CGRectGetHeight( self.frameView.frame) - 360 ) * .5, 320, 320 };
+    _pFrame = (CGRect){ cropX, (CGRectGetHeight( self.frameView.frame) - 320 - kFilterCellSize.height - 65) * .5 + 65, 320, 320 };
     _lFrame = (CGRect){ cropX, ( CGRectGetHeight( self.frameView.frame) - 240) * .5, 320, 240 };
     
     [self setCropRect:self.previewImage.size.width > self.previewImage.size.height ? _lFrame : _pFrame];
@@ -168,8 +168,7 @@ static const CGSize kFilterCellSize = { 75, 90 };
 
 - (void) createInterface
 {
-    CGFloat viewHeight = CGRectGetHeight([[UIScreen mainScreen] bounds]) - 64 - 40;
-    _cropView = [[DBCameraCropView alloc] initWithFrame:(CGRect){ 0, 64, [[UIScreen mainScreen] bounds].size.width, viewHeight }];
+    _cropView = [[DBCameraCropView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [_cropView setHidden:YES];
     
     [self setFrameView:_cropView];
@@ -250,8 +249,8 @@ static const CGSize kFilterCellSize = { 75, 90 };
 - (UIView *) navigationBar
 {
     if ( !_navigationBar ) {
-        _navigationBar = [[UIView alloc] initWithFrame:(CGRect){ 0, 0, [[UIScreen mainScreen] bounds].size.width, 64 }];
-        [_navigationBar setBackgroundColor:[UIColor blackColor]];
+        _navigationBar = [[UIView alloc] initWithFrame:(CGRect){ 0, 0, [[UIScreen mainScreen] bounds].size.width, 65 }];
+        [_navigationBar setBackgroundColor:[UIColor clearColor]];
         [_navigationBar setUserInteractionEnabled:YES];
         [_navigationBar addSubview:self.useButton];
         [_navigationBar addSubview:self.retakeButton];
@@ -266,7 +265,7 @@ static const CGSize kFilterCellSize = { 75, 90 };
 {
     if ( !_bottomBar ) {
         _bottomBar = [[UIView alloc] initWithFrame:(CGRect){ 0, CGRectGetHeight([[UIScreen mainScreen] bounds]) - 40, [[UIScreen mainScreen] bounds].size.width, 40 }];
-        [_bottomBar setBackgroundColor:[UIColor blackColor]];
+        [_bottomBar setBackgroundColor:[UIColor clearColor]];
         [_bottomBar setHidden:YES];
         
         if ( !_forceQuadCrop ) {

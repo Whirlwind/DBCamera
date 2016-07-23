@@ -21,10 +21,10 @@ static const NSUInteger kBorderWidth = 1;
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self setBackgroundColor:RGBColor(0x101010, 1)];
+        [self setBackgroundColor:[UIColor clearColor]];
         
         UIView *backgroundCellView = [[UIView alloc] initWithFrame:(CGRect){ 0, kBorderWidth, CGRectGetWidth(self.frame)-kBorderWidth, CGRectGetHeight(self.frame)-kBorderWidth*2 }];
-        [backgroundCellView setBackgroundColor:[UIColor blackColor]];
+        [backgroundCellView setBackgroundColor:[UIColor clearColor]];
         
         _label = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height-kLabelHeight, self.frame.size.width, kLabelHeight-kCellPadding)];
         [_label setFont:[UIFont systemFontOfSize:9]];
@@ -42,7 +42,7 @@ static const NSUInteger kBorderWidth = 1;
         
         [backgroundCellView addSubview:_imageView];
         
-        [self addSubview:backgroundCellView];
+        [self.contentView addSubview:backgroundCellView];
     }
     return self;
 }

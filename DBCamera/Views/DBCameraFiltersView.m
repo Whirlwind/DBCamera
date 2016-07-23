@@ -18,12 +18,11 @@
     return layout;
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame collectionViewLayout:(nonnull UICollectionViewLayout *)layout
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
-        // Initialization code
-        [self setBackgroundColor:[UIColor blackColor]];
+        [self setBackgroundColor:[UIColor clearColor]];
     }
     return self;
 }
