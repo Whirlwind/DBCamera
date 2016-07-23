@@ -233,7 +233,9 @@
 - (void) close
 {
     if ( !self.containerDelegate ) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        if (_delegate && [_delegate respondsToSelector:@selector(dismissCamera:)]) {
+            [_delegate dismissCamera:self];
+        }
         return;
     }
         
